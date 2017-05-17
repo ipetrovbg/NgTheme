@@ -1,0 +1,29 @@
+<md-card class="example-card" [formGroup]="form">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <md-card-content>
+        <div class="ng-theme-login-title">
+          <h1 class="text-center">Login</h1>
+          <h6 class="text-center ng-theme-color-gray">Please enter your user information</h6>
+        </div>
+        <div class="body">
+          <div class="row">
+            <div class="col-md-12">
+              <md-input-container class="ng-theme-full-with">
+                <input mdInput placeholder="Email" formControlName="email" required type="email">
+              </md-input-container>
+            </div>
+            <div class="col-md-12">
+              <md-input-container class="ng-theme-full-with">
+                <input mdInput placeholder="Password" formControlName="password" required type="password">
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+      <md-card-actions>
+        <button md-raised-button class="ng-theme-full-with" [color]="'primary'">LOGIN</button>
+      </md-card-actions>
+    </div>
+  </div>
+</md-card>

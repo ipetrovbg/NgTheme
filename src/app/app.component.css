@@ -1,0 +1,16 @@
+.app-inner {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.mat-sidenav-container {
+  height: calc(100vh - 0px);
+}
+.mat-sidenav{
+  min-width: 15vw;
+}
+.mat-sidenav-content {
+  padding: 20px;
+}

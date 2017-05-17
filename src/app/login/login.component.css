@@ -1,0 +1,11 @@
+.center{
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  height: 100vh;
+}
+.wrapper{
+  width: 350px;
+  height: 367px;
+  margin: 0 auto;
+}
