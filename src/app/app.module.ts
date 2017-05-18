@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { NgReduxModule } from '@angular-redux/store';
 
 /* Angular Material Modules */
 import {
@@ -16,6 +17,7 @@ import {
   MdButtonModule,
   MdCardModule,
   MdInputModule,
+  MdProgressBarModule,
 } from '@angular/material';
 
 /* Application Modules */
@@ -26,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { appRoutes } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
+import { CounterActions } from './store/actions';
 
 
 @NgModule({
@@ -49,8 +52,12 @@ import { LoginFormComponent } from './login/login-form/login-form.component';
     MdButtonModule,
     MdInputModule,
     MdCardModule,
+    NgReduxModule,
+    MdProgressBarModule,
   ],
-  providers: [],
+  providers: [
+    CounterActions,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

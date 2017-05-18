@@ -3,7 +3,7 @@
     <div class="body">
       <div class="row">
         <div class="col-md-12">
-          <app-login-form [form]="loginForm"></app-login-form>
+          <app-login-form [is-submited]="submitLogin$ | async" (onValidSubmit)="onValidSubmit($event)" [form]="loginForm"></app-login-form>
         </div>
       </div>
     </div>
