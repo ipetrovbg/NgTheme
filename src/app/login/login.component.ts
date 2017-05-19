@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select } from '@angular-redux/store/lib/src';
 import { Observable } from 'rxjs/Rx';
 import { CounterActions } from '../store/actions';
+import { Login } from '../store/app.state.interface';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import { CounterActions } from '../store/actions';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
-  @select() public readonly submitLogin$: Observable<boolean>;
+  @select(['login', 'submit']) public readonly submitLogin$: Observable<boolean>;
+  @select(['login']) public readonly login$: Observable<Login>;
 
   constructor(
     private fb: FormBuilder,
@@ -20,18 +22,24 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.initializeLoginForm();
+
     this.submitLogin$.subscribe(state => {
       if ( state ) {
-        console.log(state);
         setTimeout(() => {
           this.actions.submitLogin(false);
+          this.actions.enterCredentials({email: '', password: ''});
         }, 2000);
       }
+    });
+    this.login$.subscribe(login => {
+      this.loginForm.patchValue({
+        email: login.email,
+        password: login.password,
+      });
     });
   }
 
   onValidSubmit(e) {
-    // console.log(e);
     this.actions.submitLogin(true);
   }
 
@@ -43,5 +51,7 @@ export class LoginComponent implements OnInit {
       email: [ '', [ Validators.required, Validators.email ] ],
       password: [ '', Validators.required ]
     });
+    /* populating the store */
+    this.loginForm.valueChanges.debounceTime(500).subscribe(form => this.actions.enterCredentials(form));
   }
 }

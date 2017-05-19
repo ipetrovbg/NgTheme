@@ -7,6 +7,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgReduxModule } from '@angular-redux/store';
+import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+import { NgRedux, DevToolsExtension } from '@angular-redux/store';
+import { rootReducer } from './store/store';
+import { INITIAL_STATE } from './store/initial.state';
+import { AppState } from './store/app.state.interface';
 
 /* Angular Material Modules */
 import {
@@ -57,7 +62,22 @@ import { CounterActions } from './store/actions';
   ],
   providers: [
     CounterActions,
+    NgReduxRouter,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    ngReduxRouter: NgReduxRouter,
+    ngRedux: NgRedux<AppState>,
+    devTools: DevToolsExtension,
+  ) {
+    ngRedux.configureStore(
+      rootReducer,
+      INITIAL_STATE,
+      null,
+      devTools.isEnabled() ? [ devTools.enhancer() ] : []
+    );
+    ngReduxRouter.initialize();
+  }
+}
