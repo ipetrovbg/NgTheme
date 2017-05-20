@@ -9,9 +9,15 @@ import { RouterModule } from '@angular/router';
 import { NgReduxModule } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { NgRedux, DevToolsExtension } from '@angular-redux/store';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { rootReducer } from './store/store';
 import { INITIAL_STATE } from './store/initial.state';
 import { AppState } from './store/app.state.interface';
+import { AuthGuard } from './user/user.guard';
+import { LoginGuard } from './login/login.guard';
 
 /* Angular Material Modules */
 import {
@@ -34,7 +40,19 @@ import { appRoutes } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CounterActions } from './store/actions';
+import { UserService } from './user/user.service';
 
+export const firebaseConfig = {
+  production: true,
+  firebase: {
+    apiKey: 'AIzaSyCHjRmkOAeAwHcjsTCTVNXQ8ZuJWrj3TUA',
+    authDomain: 'ngtheme.firebaseapp.com',
+    databaseURL: 'https://ngtheme.firebaseio.com',
+    projectId: 'ngtheme',
+    storageBucket: 'ngtheme.appspot.com',
+    messagingSenderId: '161069526888'
+  }
+};
 
 @NgModule({
   declarations: [
@@ -59,10 +77,18 @@ import { CounterActions } from './store/actions';
     MdCardModule,
     NgReduxModule,
     MdProgressBarModule,
+    AngularFireModule.initializeApp(firebaseConfig.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgReduxRouterModule,
   ],
   providers: [
     CounterActions,
     NgReduxRouter,
+    AngularFireDatabase,
+    UserService,
+    AuthGuard,
+    LoginGuard,
   ],
   bootstrap: [AppComponent]
 })

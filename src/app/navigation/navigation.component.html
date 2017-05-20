@@ -3,4 +3,8 @@
     <md-icon md-list-icon>home</md-icon>
     <a md-line>Dashboard</a>
   </md-list-item>
+  <md-list-item *ngIf="(user$ | async)?.uid" (click)="logout()">
+    <md-icon md-list-icon>account_circle</md-icon>
+    <a md-line>Logout</a>
+  </md-list-item>
 </md-nav-list>

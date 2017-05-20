@@ -4,5 +4,11 @@ export const INITIAL_STATE: AppState = {
     submit: false,
     email: '',
     password: ''
+  },
+  user: {
+    uid: '',
+    displayName: '',
+    photoURL: '',
+    email: ''
   }
 };
