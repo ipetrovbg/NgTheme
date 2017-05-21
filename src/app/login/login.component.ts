@@ -15,8 +15,15 @@ import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 })
 @AutoUnsubscribe()
 export class LoginComponent implements OnInit {
+
+  /**
+   * login form
+   */
   public loginForm: FormGroup;
 
+  /**
+   * @Redux subscriptions for store properties
+   */
   @select(['user', 'login', 'submit']) public readonly submitLogin$: Observable<boolean>;
   @select(['user']) public readonly user$: Observable<User>;
   @select(['user', 'login', 'failed']) public readonly loginFailed$: Observable<boolean>;
@@ -30,17 +37,44 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    /**
+     * reset user login object in redux store
+     */
     this.actions.loginReset();
+
+    /**
+     * initializing reactive form
+     */
     this.initializeLoginForm();
-    this.loginFailed$.subscribe(() => this._handleLoginFailed());
-    this.user$.subscribe(user => this._handleUser(user));
+
+    /**
+     * subscribe when login failed
+     * and dispatch some actions
+     */
+    this.loginFailed$.subscribe(this._handleLoginFailed.bind(this));
+
+    /**
+     * subscribe when user is logged in
+     * and navigate to dashboard route
+     */
+    this.user$.subscribe(this._handleUser.bind(this));
   }
 
+  /**
+   * @Event
+   * listen when form is valid submitted
+   */
   onValidSubmit() {
     this.actions.submitLogin(true);
     this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
   }
 
+  /**
+   * @Event
+   * listen when login form is invalid submitted
+   * and dispatch some actions
+   * @param e
+   */
   onSubmitError(e) {
     if ( e.email.errors && e.password.errors && e.password.errors.required && e.email.errors.email && e.email.errors.required ) {
       this.actions.errorOnLogin({message: 'Email and Password are required!'});
@@ -84,7 +118,12 @@ export class LoginComponent implements OnInit {
       email: [ '', [ Validators.required, Validators.email ] ],
       password: [ '', Validators.required ]
     });
-    /* populating the store */
+
+    /**
+     * dispatch action for
+     * populating the store
+     * when login form is changed
+     */
     this.loginForm
       .valueChanges
       .debounceTime(500)
