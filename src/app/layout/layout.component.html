@@ -1,3 +1,9 @@
+<md-toolbar color="primary" class="main-header">
+  <button (click)="sidemenu.toggle()" md-icon-button>
+    <md-icon>menu</md-icon>
+  </button>
+  <a class="branding">NgTheme</a>
+</md-toolbar>
 <md-sidenav-container class="app-inner">
   <md-sidenav #sidemenu class="app-sidenav sidenav-panel" [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()">
     <app-navigation></app-navigation>

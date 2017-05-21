@@ -10,6 +10,8 @@ import {
   MdListModule,
   MdSidenavModule,
   MdIconModule,
+  MdToolbarModule,
+  MdButtonModule,
 } from '@angular/material';
 
 @NgModule({
@@ -18,6 +20,8 @@ import {
     MdListModule,
     MdSidenavModule,
     MdIconModule,
+    MdToolbarModule,
+    MdButtonModule,
     routing,
   ],
   declarations: [
