@@ -8,10 +8,6 @@ import { User } from '../user/user';
 import { Router } from '@angular/router';
 import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 
-/*
-* @AutoUnsubscribe(["one$", "two$"])
-* */
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,11 +16,12 @@ import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 @AutoUnsubscribe()
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
+
   @select(['user', 'login', 'submit']) public readonly submitLogin$: Observable<boolean>;
   @select(['user']) public readonly user$: Observable<User>;
   @select(['user', 'login', 'failed']) public readonly loginFailed$: Observable<boolean>;
   @select(['user', 'login', 'failedMessage']) public readonly loginFailedMessage$: Observable<string>;
-  public user: User;
+
   constructor(
     private fb: FormBuilder,
     private actions: CounterActions,
