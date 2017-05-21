@@ -11,8 +11,8 @@ import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 export class DashboardComponent implements OnInit {
 
   constructor(
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+  ) {}
 
   ngOnInit() {}
 

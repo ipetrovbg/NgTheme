@@ -6,7 +6,17 @@
       <md-card-content>
         <div class="ng-theme-login-title">
           <h1 class="text-center">Login</h1>
-          <h6 class="text-center ng-theme-color-gray">Please enter your user information</h6>
+          <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+            <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+              <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5 text-center ng-theme-color-gray">Please enter your user information</h6>
+            </div>
+          </div>
+
+          <div class="ng-theme-error-color ng-theme-flex justify-content-center verticle-aligh aligh-item-center" *ngIf="hasError">
+            <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+              <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5"> {{ message }} </h6>
+            </div>
+          </div>
         </div>
         <div class="body">
           <div class="row">

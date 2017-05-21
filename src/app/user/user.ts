@@ -21,6 +21,12 @@ export class User implements IUser {
             if ( this.user.photoURL ) {
               this.photoURL = this.user.photoURL;
             }
+        } else {
+          this.user = {};
+          this.uid = '';
+          this.email = '';
+          this.displayName = '';
+          this.photoURL = '';
         }
     }
 

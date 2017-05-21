@@ -8,7 +8,8 @@ export class CounterActions {
     static SUBMIT_LOGIN = 'SUBMIT_LOGIN';
     static ENTER_CREDENTIALS = 'ENTER_CREDENTIALS';
     static UPDATE_USER = 'UPDATE_USER';
-    static ERROR_ON_UPDATE_USER = 'ERROR_ON_UPDATE_USER';
+    static ERROR_ON_LOGIN = 'ERROR_ON_LOGIN';
+    static LOGIN_RESET = 'LOGIN_RESET';
 
     constructor(private ngRedux: NgRedux<AppState>) {}
 
@@ -21,8 +22,11 @@ export class CounterActions {
     updateUser(user: User) {
       this.ngRedux.dispatch({ type: CounterActions.UPDATE_USER, payload: user });
     }
+    loginReset() {
+      this.ngRedux.dispatch({ type: CounterActions.LOGIN_RESET });
+    }
 
-    errorOnUpdateUser(error) {
-      this.ngRedux.dispatch({ type: CounterActions.ERROR_ON_UPDATE_USER, payload: error });
+    errorOnLogin(error) {
+      this.ngRedux.dispatch({ type: CounterActions.ERROR_ON_LOGIN, payload: error });
     }
 }

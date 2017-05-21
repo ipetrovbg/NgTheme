@@ -12,9 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "angularfire2": "^4.0.0-rc.0",
-    "firebase": "^3.8.0",
-  	"@angular-redux/form": "^6.2.0",
+    "@angular-redux/form": "^6.2.0",
     "@angular-redux/router": "^6.2.0",
     "@angular-redux/store": "^6.2.0",
     "@angular/animations": "^4.1.2",
@@ -27,13 +25,16 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angularfire2": "^4.0.0-rc.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4",
+    "firebase": "^3.8.0",
+    "immutable": "^3.8.1",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.1",
-    "redux-observable": "^0.14.1"
+    "redux-observable": "^0.14.1",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",

@@ -30,8 +30,11 @@ export class UserService {
   login(email, password) {
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
-      .then(user => this.actions.updateUser(new User(user)))
-      .catch(err => this.actions.errorOnUpdateUser(err));
+      .then(user => {
+        this.actions.loginReset();
+        this.actions.updateUser(new User(user));
+      })
+      .catch(err => this.actions.errorOnLogin(err));
   }
 
   logout() {

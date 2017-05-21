@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { select } from '@angular-redux/store/lib/src';
+import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Rx';
 import { CounterActions } from '../store/actions';
-import { Login } from '../store/app.state.interface';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user';
 import { Router } from '@angular/router';
@@ -21,44 +20,63 @@ import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 @AutoUnsubscribe()
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
-  @select(['login', 'submit']) public readonly submitLogin$: Observable<boolean>;
-  @select(['login']) public readonly login$: Observable<Login>;
+  @select(['user', 'login', 'submit']) public readonly submitLogin$: Observable<boolean>;
   @select(['user']) public readonly user$: Observable<User>;
+  @select(['user', 'login', 'failed']) public readonly loginFailed$: Observable<boolean>;
+  @select(['user', 'login', 'failedMessage']) public readonly loginFailedMessage$: Observable<string>;
   public user: User;
   constructor(
     private fb: FormBuilder,
     private actions: CounterActions,
     public userService: UserService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
+    this.actions.loginReset();
     this.initializeLoginForm();
-    this.user$.subscribe(user => {
-      console.log(user);
-      this.user = user;
-      if ( user && user.uid ) {
-        this.router.navigate(['/layout/dashboard']);
-      }
-    });
-
-    this.submitLogin$.subscribe(state => {
-      if ( state ) {
-        setTimeout(() => {
-          this.actions.submitLogin(false);
-          this.actions.enterCredentials({email: '', password: ''});
-        }, 2000);
-      }
-    });
+    this.loginFailed$.subscribe(() => this._handleLoginFailed());
+    this.user$.subscribe(user => this._handleUser(user));
   }
 
   onValidSubmit() {
     this.actions.submitLogin(true);
-    if ( this.user && !this.user.uid ) {
-      this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
+    this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
+  }
+
+  onSubmitError(e) {
+    if ( e.email.errors && e.password.errors && e.password.errors.required && e.email.errors.email && e.email.errors.required ) {
+      this.actions.errorOnLogin({message: 'Email and Password are required!'});
+    } else if ( e.email.errors && !e.password.errors && e.email.errors.email && e.email.errors.required ) {
+      this.actions.errorOnLogin({message: 'Email is required!'});
+    } else if ( e.email.errors && !e.password.errors && e.email.errors.email && !e.email.errors.required ) {
+      this.actions.errorOnLogin({message: 'Email is not valid!'});
+    } else if ( e.password.errors && !e.email.errors && e.password.errors.required ) {
+      this.actions.errorOnLogin({message: 'Password is required!'});
     } else {
-      console.log('already has user!', this.user);
+      this.actions.errorOnLogin({ message: 'Error!' });
     }
+    this.actions.submitLogin(false);
+  }
+
+  /**
+   *
+   * @param user
+   * @private
+   */
+  private _handleUser( user: User ) {
+    if ( user && user.uid ) {
+      this.router.navigate(['/layout/dashboard']);
+    }
+  }
+
+  /**
+   * dispatch actions when login failed
+   * @private
+   */
+  private _handleLoginFailed() {
+    this.actions.submitLogin(false);
+    this.actions.enterCredentials({email: '', password: ''});
   }
 
   /**
@@ -70,6 +88,9 @@ export class LoginComponent implements OnInit {
       password: [ '', Validators.required ]
     });
     /* populating the store */
-    this.loginForm.valueChanges.debounceTime(500).subscribe(form => this.actions.enterCredentials(form));
+    this.loginForm
+      .valueChanges
+      .debounceTime(500)
+      .subscribe(form => this.actions.enterCredentials(form));
   }
 }

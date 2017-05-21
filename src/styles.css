@@ -15,6 +15,52 @@
 .ng-theme-color-gray {
   color: #3a405b;
 }
+.ng-theme-error-color {
+  color: red;
+}
+.ng-theme-flex {
+  display: flex;
+}
+.ng-theme-flex.verticle-aligh {
+  vertical-align: middle;
+}
+.ng-theme-flex.aligh-item-center {
+  align-items: center;
+}
+.ng-theme-flex.aligh-content-center {
+  align-content: center;
+}
+.ng-theme-flex.justify-content-center {
+  justify-content: center;
+}
+.ng-theme-space.ng-theme-left-5 { margin-left:5px; }
+.ng-theme-space.ng-theme-left-10 { margin-left:10px; }
+.ng-theme-space.ng-theme-left-15 { margin-left:15px; }
+.ng-theme-space.ng-theme-left-20 { margin-left:20px; }
+.ng-theme-space.ng-theme-left-25 { margin-left:25px; }
+.ng-theme-space.ng-theme-left-30 { margin-left:30px; }
+.ng-theme-space.ng-theme-left-50 { margin-left:50px; }
+.ng-theme-space.ng-theme-right-5 { margin-right:5px; }
+.ng-theme-space.ng-theme-right-10 { margin-right:10px; }
+.ng-theme-space.ng-theme-right-15 { margin-right:15px; }
+.ng-theme-space.ng-theme-right-20 { margin-right:20px; }
+.ng-theme-space.ng-theme-right-25 { margin-right:25px; }
+.ng-theme-space.ng-theme-right-30 { margin-right:30px; }
+.ng-theme-space.ng-theme-right-50 { margin-right:50px; }
+.ng-theme-space.ng-theme-top-5 { margin-top:5px; }
+.ng-theme-space.ng-theme-top-10 { margin-top:10px; }
+.ng-theme-space.ng-theme-top-15 { margin-top:15px; }
+.ng-theme-space.ng-theme-top-20 { margin-top:20px; }
+.ng-theme-space.ng-theme-top-25 { margin-top:25px; }
+.ng-theme-space.ng-theme-top-30 { margin-top:30px; }
+.ng-theme-space.ng-theme-top-50 { margin-top:50px; }
+.ng-theme-space.ng-theme-bottom-5 { margin-bottom:5px; }
+.ng-theme-space.ng-theme-bottom-10 { margin-bottom:10px; }
+.ng-theme-space.ng-theme-bottom-15 { margin-bottom:15px; }
+.ng-theme-space.ng-theme-bottom-20 { margin-bottom:20px; }
+.ng-theme-space.ng-theme-bottom-25 { margin-bottom:25px; }
+.ng-theme-space.ng-theme-bottom-30 { margin-bottom:30px; }
+.ng-theme-space.ng-theme-bottom-50 { margin-bottom:50px; }
 md-card {
   border-radius: 7px!important
 }
