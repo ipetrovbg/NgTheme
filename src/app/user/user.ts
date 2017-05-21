@@ -1,14 +1,14 @@
 export interface IUser {
     uid: string;
     displayName?: string;
-    photoURL?: string;
+    photoURL: string;
     email: string;
 }
 
 export class User implements IUser {
     public uid: string;
     public displayName: string;
-    public photoURL?: string;
+    public photoURL: string;
     public email: string;
     protected _user: any;
 
@@ -18,9 +18,7 @@ export class User implements IUser {
             this.uid = this.user.uid;
             this.email = this.user.email;
             this.displayName = this.user.displayName;
-            if ( this.user.photoURL ) {
-              this.photoURL = this.user.photoURL;
-            }
+            this.photoURL = this.user.photoURL;
         } else {
           this.user = {};
           this.uid = '';

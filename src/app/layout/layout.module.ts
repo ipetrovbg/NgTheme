@@ -4,6 +4,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { LayoutComponent } from './layout.component';
 import { routing } from './layout.routes';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { UserSummaryComponent } from 'app/user-summary/user-summary.component';
 
 /* Angular Material Modules */
 import {
@@ -12,6 +13,8 @@ import {
   MdIconModule,
   MdToolbarModule,
   MdButtonModule,
+  MdMenuModule,
+  MdCardModule,
 } from '@angular/material';
 
 @NgModule({
@@ -22,12 +25,15 @@ import {
     MdIconModule,
     MdToolbarModule,
     MdButtonModule,
+    MdMenuModule,
+    MdCardModule,
     routing,
   ],
   declarations: [
     DashboardComponent,
     NavigationComponent,
     LayoutComponent,
+    UserSummaryComponent,
   ]
 })
 export class LayoutModule { }

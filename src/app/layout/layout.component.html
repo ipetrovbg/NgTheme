@@ -1,8 +1,32 @@
 <md-toolbar color="primary" class="main-header">
-  <button (click)="sidemenu.toggle()" md-icon-button>
-    <md-icon>menu</md-icon>
-  </button>
-  <a class="branding">NgTheme</a>
+  <div class="ng-theme-wrapper">
+    <div class="row">
+      <div class="col-sm-12 col-md-9">
+        <button (click)="sidemenu.toggle()" md-icon-button>
+          <md-icon>menu</md-icon>
+        </button>
+        <a class="branding">NgTheme</a>
+      </div>
+      <div class="col-sm-12 col-md-3">
+
+        <button md-icon-button class="pull-right user-menu-button" [mdMenuTriggerFor]="menu">
+          <app-user-summary [user]="user$ | async"></app-user-summary>
+        </button>
+        <md-menu #menu="mdMenu">
+          <button md-menu-item>
+            <md-icon>account_circle</md-icon>
+            <span *ngIf="(user$ | async).displayName">{{(user$ | async).displayName }}</span>
+            <span *ngIf="!(user$ | async).displayName">{{(user$ | async).email }}</span>
+          </button>
+          <button md-menu-item (click)="logout()">
+            <md-icon>account_circle</md-icon>
+            <span>Logout</span>
+          </button>
+        </md-menu>
+      </div>
+    </div>
+  </div>
+
 </md-toolbar>
 <md-sidenav-container class="app-inner">
   <md-sidenav #sidemenu class="app-sidenav sidenav-panel" [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()">
