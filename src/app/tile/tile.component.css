@@ -1,0 +1,23 @@
+md-card {
+  padding:0;
+  margin:0;
+}
+.mat-card-avatar {
+  width:25px;
+  height: 25px;
+}
+.mat-card-title {
+  margin-bottom:0;
+}
+md-card-header {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  border-bottom:1px solid #c9c9c9;
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:10px;
+}
+md-card-content {
+  padding:10px;
+}

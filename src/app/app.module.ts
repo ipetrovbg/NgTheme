@@ -41,6 +41,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CounterActions } from './store/actions';
 import { UserService } from './user/user.service';
+import { TileComponent } from './tile/tile.component';
 
 export const firebaseConfig = {
   production: true,
@@ -61,6 +62,7 @@ export const firebaseConfig = {
     NotFoundComponent,
     LoginComponent,
     LoginFormComponent,
+    TileComponent,
   ],
   imports: [
     BrowserModule,
