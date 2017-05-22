@@ -16,6 +16,7 @@ import {
   MdMenuModule,
   MdCardModule,
 } from '@angular/material';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {
     MdButtonModule,
     MdMenuModule,
     MdCardModule,
+    SharedModule,
     routing,
   ],
   declarations: [

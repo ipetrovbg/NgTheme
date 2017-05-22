@@ -35,13 +35,14 @@ import {
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 import { appRoutes } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CounterActions } from './store/actions';
 import { UserService } from './user/user.service';
-import { RippleDirective } from './ripple.directive';
+import { RippleDirective } from './shared/ripple.directive';
 
 export const firebaseConfig = {
   production: true,
@@ -62,7 +63,7 @@ export const firebaseConfig = {
     NotFoundComponent,
     LoginComponent,
     LoginFormComponent,
-    RippleDirective,
+
   ],
   imports: [
     BrowserModule,
@@ -83,6 +84,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgReduxRouterModule,
+    SharedModule,
   ],
   providers: [
     CounterActions,
