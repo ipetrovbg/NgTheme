@@ -10,8 +10,9 @@ import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 @AutoUnsubscribe()
 export class DashboardComponent implements OnInit {
   public tileOptions = {
+    // ripple: true,
     header: {
-      text: 'Title',
+      text: 'Select Date',
       padding: {
         top: '10px',
         left: '10px',
@@ -19,15 +20,19 @@ export class DashboardComponent implements OnInit {
         bottom: '10px'
       },
       border: {
-        color: '#ccc'
+        // color: '#c9c9c9'
       },
       style: {
         'font-size': '18px'
       },
-      icon: 'home'
+      icon: 'date_range'
     },
     style: {
-      margin: '20px',
+      // padding: '10px',
+    //   margin: '20px',
+    //   width: '300px',
+    //   background: '#d5b6d6',
+    //   color: 'white'
     }
   };
   constructor(

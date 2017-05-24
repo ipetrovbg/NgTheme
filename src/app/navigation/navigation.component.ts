@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { select } from '@angular-redux/store/lib/src';
-import { Observable } from 'rxjs/Rx';
-import { UserService } from '../user/user.service';
-import { User } from '../user/user';
+import { select } from '@angular-redux/store';
+import { CounterActions } from '../store/actions';
 
 @Component({
   selector: 'app-navigation',
@@ -10,15 +8,16 @@ import { User } from '../user/user';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  @select(['user']) public readonly user$: Observable<User>;
+  @select(['navigation']) public readonly navigation$;
   constructor(
-    public userService: UserService,
+    private actions: CounterActions
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  logout() {
-    this.userService.logout();
+  toggle(item) {
+    setTimeout(() => {
+      this.actions.updateNavigation(item);
+    }, 200);
   }
 }

@@ -1,14 +1,53 @@
-<md-nav-list appRipple timeout="500" color="gray">
-  <md-list-item [routerLink]="['/home']">
-    <md-icon md-list-icon>home</md-icon>
-    <a md-line>Home</a>
+<md-nav-list>
+  <md-list-item
+    [ngClass]="{
+      open: (navigation$ | async)?.data[0].state,
+      'ng-close': !(navigation$ | async)?.data[0].state
+    }">
+    <a (click)="toggle('home')" class="link-toggle">
+      <md-icon md-list-icon>home</md-icon>
+      <span>Home</span>
+      <md-icon style="position:absolute;right:5px;" md-list-icon>
+        {{ (navigation$ | async)?.data[0].state ? 'expand_less' : 'expand_more' }}
+      </md-icon>
+      </a>
+    <md-nav-list *ngIf="(navigation$ | async)?.data[0].state">
+      <md-list-item [routerLink]="['/home']">
+        <a class="link" md-line>Home</a>
+      </md-list-item>
+      <md-list-item [routerLink]="['/layout/dashboard']">
+        <a class="link" md-line>Dashboard</a>
+      </md-list-item>
+      <md-list-item [routerLink]="['/layout/dashboard']">
+        <a class="link" md-line>Dashboard</a>
+      </md-list-item>
+      <md-list-item [routerLink]="['/layout/dashboard']">
+        <a class="link" md-line>Dashboard</a>
+      </md-list-item>
+    </md-nav-list>
   </md-list-item>
-  <md-list-item [routerLink]="['/layout/dashboard']">
-    <md-icon md-list-icon>dashboard</md-icon>
-    <a md-line>Dashboard</a>
-  </md-list-item>
-  <md-list-item *ngIf="(user$ | async)?.uid" (click)="logout()">
-    <md-icon md-list-icon>account_circle</md-icon>
-    <a md-line>Logout</a>
+  <md-list-item [routerLink]="['/layout/dashboard']"
+    [ngClass]="{
+      open: (navigation$ | async)?.data[1].state,
+      'ng-close': !(navigation$ | async)?.data[1].state
+    }">
+    <a (click)="toggle('dashboard')" class="link-toggle">
+      <md-icon md-list-icon>dashboard</md-icon>
+      <span>Dashboard</span>
+      <md-icon style="position:absolute;right:5px;" md-list-icon>
+        {{ (navigation$ | async)?.data[1].state ? 'expand_less' : 'expand_more' }}
+      </md-icon>
+    </a>
+    <md-nav-list *ngIf="(navigation$ | async)?.data[1].state">
+      <md-list-item [routerLink]="['/layout/dashboard']">
+        <a class="link" md-line>Dashboard</a>
+      </md-list-item>
+      <md-list-item [routerLink]="['/layout/dashboard']">
+        <a class="link" md-line>Dashboard</a>
+      </md-list-item>
+      <md-list-item [routerLink]="['/layout/dashboard']">
+        <a class="link" md-line>Dashboard</a>
+      </md-list-item>
+    </md-nav-list>
   </md-list-item>
 </md-nav-list>

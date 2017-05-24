@@ -1,12 +1,14 @@
 
-  <md-card class="ng-theme-card" [ngStyle]="options?.style" appRipple timeout="800" color="gray">
-    <md-card-header [ngStyle]="{
+  <md-card class="ng-theme-card" [ngStyle]="options?.style" [appRipple]="options?.ripple" timeout="800" color="gray">
+    <md-card-header *ngIf="options?.header?.text?.length"
+    [ngStyle]="{
     'padding-top': options?.header?.padding?.top,
       'padding-left': options?.header?.padding?.left,
       'padding-right': options?.header?.padding?.right,
-      'padding-bottom': options?.header?.padding?.bottom,
-      'border-color': options?.header?.border?.color
-      }">
+      'padding-bottom': options?.header?.padding?.bottom
+      }"
+    [style.border-bottom]="options?.header?.border?.color?.length ? '1px solid ' + ' ' + options?.header?.border?.color : ''"
+    >
 
       <div md-card-avatar class="tile-type">
         <md-icon>{{ options?.header?.icon }}</md-icon>

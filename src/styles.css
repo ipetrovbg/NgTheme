@@ -74,7 +74,71 @@
 body md-card.ng-theme-card{
   border-radius: 2px;
 }
+md-sidenav.sidenav-panel {
+  overflow-x: hidden;
+  width: 20rem;
+  background-color: #f5f5f5!important;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)!important;
+}
+.link-toggle {
+  display: flex;
+  padding-left: 10px;
+  width: 100%;
+  vertical-align: middle;
+  align-items: center;
+  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  height: 48px;
+}
+.link-toggle .link {
+  padding-left: 26px;
+}
+.mat-nav-list .mat-list-item.open>.mat-list-item-content {
+  display: block;
+  height: auto;
+  opacity: 1;
+  overflow: hidden;
+  animation: open 1s;
+  padding: 0;
+  background: rgba(0,0,0,.04);
+}
+.mat-nav-list .mat-list-item.ng-close>.mat-list-item-content {
+  display: block;
+  height: auto;
+  opacity: 1;
+  overflow: hidden;
+  animation: close 0.5s;
+  padding: 0;
+}
+@keyframes close {
+  from {
+    background: rgba(0,0,0,.04);
+    max-height: 1000px;
+  }
+  to {
+    max-height: 48px;
+  }
+}
 
+@keyframes open {
+  from {
+    max-height: 48px;
+  }
+  to {
+    background: rgba(0,0,0,.04);
+    max-height: 1000px;
+  }
+}
+
+md-sidenav.sidebar-panel .mat-list-item .mat-list-item-content {
+  display: block!important;
+  height: auto;
+  max-height: 48px;
+  overflow: hidden!important;
+  padding: 0!important;
+  transition: max-height .3s cubic-bezier(.35,0,.25,1)!important;
+}
 
 .material{
   position:relative;

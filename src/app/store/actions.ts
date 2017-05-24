@@ -10,6 +10,7 @@ export class CounterActions {
     static UPDATE_USER = 'UPDATE_USER';
     static ERROR_ON_LOGIN = 'ERROR_ON_LOGIN';
     static LOGIN_RESET = 'LOGIN_RESET';
+    static UPDATE_NAVIGATION = 'UPDATE_NAVIGATION';
 
     constructor(private ngRedux: NgRedux<AppState>) {}
 
@@ -28,5 +29,8 @@ export class CounterActions {
 
     errorOnLogin(error) {
       this.ngRedux.dispatch({ type: CounterActions.ERROR_ON_LOGIN, payload: error });
+    }
+    updateNavigation(item) {
+      this.ngRedux.dispatch({ type: CounterActions.UPDATE_NAVIGATION, payload: item });
     }
 }

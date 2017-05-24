@@ -1,13 +1,22 @@
 <div class="row">
   <div class="col-lg-6 col-md-12 col-sm-12">
-    <!--<app-tile [options]="tileOptions">-->
-      <!--<div class="tile-body-template">-->
-        <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-        <!--Accusantium aliquam beatae culpa, delectus dolores facere-->
-        <!--fuga id incidunt laboriosam, magnam, nam nihil nisi pariatur-->
-        <!--provident quidem quo unde ut voluptatibus!-->
-      <!--</div>-->
-    <!--</app-tile>-->
-    <div class="material" appRipple [timeout]="1500"></div>
+    <app-tile [options]="tileOptions">
+      <div class="tile-body-template">
+        <md-input-container class="ng-theme-full-with">
+          <input mdInput [mdDatepicker]="d">
+          <button mdSuffix [mdDatepickerToggle]="d"></button>
+        </md-input-container>
+      </div>
+    </app-tile>
+
+
+    <md-datepicker #d [touchUi]="true"></md-datepicker>
+  </div>
+  <div class="col-md-12 col-lg-6 col-sm-12">
+    <app-tile>
+      <div class="tile-body-template">
+        <img class="img-responsive" src="https://lh4.googleusercontent.com/-a0QArXa9BKQ/AAAAAAAAAAI/AAAAAAAAFFI/Z_dMMXHIfVA/photo.jpg" alt="">
+      </div>
+    </app-tile>
   </div>
 </div>

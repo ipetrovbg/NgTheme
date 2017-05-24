@@ -15,6 +15,8 @@ import {
   MdMenuModule,
   MdProgressBarModule,
   MdToolbarModule,
+  MdNativeDateModule,
+  MdDatepickerModule,
 } from '@angular/material';
 
 @NgModule({
@@ -30,6 +32,8 @@ import {
     MdProgressBarModule,
     MdMenuModule,
     MdToolbarModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
   ],
   declarations: [
     RippleDirective,
@@ -48,6 +52,8 @@ import {
     MdProgressBarModule,
     MdMenuModule,
     MdToolbarModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
   ]
 })
 export class SharedModule { }

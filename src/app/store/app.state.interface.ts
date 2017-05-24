@@ -15,6 +15,14 @@ export interface IUserStore {
   email: string;
   login: ILoginStore;
 }
+export interface INavigationItem {
+  name: string;
+  state: boolean;
+}
+export interface INavigationStore {
+  data: Array<INavigationItem>;
+}
 export interface AppState {
   user: IUserStore;
+  navigation: INavigationStore;
 }

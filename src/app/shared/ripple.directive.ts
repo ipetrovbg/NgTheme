@@ -34,7 +34,7 @@
 
  *
  */
-import { Directive, HostListener, ElementRef, Renderer2, Input, OnInit } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, Input, OnInit, OnChanges } from '@angular/core';
 import { DomHelper } from './dom.helper.model';
 import { Observable } from 'rxjs/Observable';
 
@@ -42,7 +42,7 @@ import { Observable } from 'rxjs/Observable';
   selector: '[appRipple]',
   exportAs: 'appRipple'
 })
-export class RippleDirective extends DomHelper implements OnInit {
+export class RippleDirective extends DomHelper implements OnInit, OnChanges {
 
   @Input('color') public color = '#ffffff';
 
@@ -55,17 +55,23 @@ export class RippleDirective extends DomHelper implements OnInit {
    */
   @Input('timeout') public timeout = 2500;
 
+  @Input() public appRipple = true;
+
   private nativeElement: {width: number, height: number} = {width: 0, height: 0};
 
   constructor(private renderer: Renderer2, private el: ElementRef) {
     super();
-
-    renderer.addClass(this.el.nativeElement, 'ripple');
-    renderer.setStyle(this.el.nativeElement, 'overflow', 'hidden');
-    renderer.setStyle(this.el.nativeElement, 'position', 'relative');
   }
 
   ngOnInit() {
+
+    if ( this.appRipple ) {
+      this.renderer.addClass(this.el.nativeElement, 'ripple');
+      this.renderer.setStyle(this.el.nativeElement, 'overflow', 'hidden');
+      this.renderer.setStyle(this.el.nativeElement, 'position', 'relative');
+      this.renderer.setStyle(this.el.nativeElement, 'z-index', 2);
+    }
+
     /**
      * Create Observable from event and trigger event
      * only if window width is changed
@@ -75,29 +81,35 @@ export class RippleDirective extends DomHelper implements OnInit {
      * is different .distinctUntilChanged() will
      * trigger new event.
      */
-    Observable.fromEvent(window, 'resize')
-      .map((e: any) => e.target.innerWidth)
-      .distinctUntilChanged()
-      .debounceTime(200)
-      .subscribe(this._updateToResponsive.bind(this));
+    if ( this.appRipple ) {
+      Observable.fromEvent(window, 'resize')
+        .map((e: any) => e.target.innerWidth)
+        .distinctUntilChanged()
+        .debounceTime(200)
+        .subscribe(this._updateToResponsive.bind(this));
+    }
   }
-
+  ngOnChanges(changes) {
+    this.appRipple = changes.appRipple ? changes.appRipple.currentValue : this.appRipple;
+  }
   @HostListener('click', ['$event']) click(e) {
-    e.preventDefault();
+    if ( this.appRipple ) {
+      e.preventDefault();
 
-    this._preventGrow();
+      this._preventGrow();
 
-    this._removeOldClasess();
+      this._removeOldClasess();
 
-    const $div = this.renderer.createElement('div');
+      const $div = this.renderer.createElement('div');
 
-    const btnOffset = RippleDirective.offset(this.el.nativeElement);
+      const btnOffset = RippleDirective.offset(this.el.nativeElement);
 
-    const position = RippleDirective._findPosition(e, btnOffset);
+      const position = RippleDirective._findPosition(e, btnOffset);
 
-    this._applyStyle( $div, position );
+      this._applyStyle($div, position);
 
-    this._removeRippleClasses( $div );
+      this._removeRippleClasses($div);
+    }
   }
 
   private _updateToResponsive(): void {
@@ -173,8 +185,15 @@ export class RippleDirective extends DomHelper implements OnInit {
   private _removeOldClasess() {
     this.el.nativeElement.childNodes.forEach(el => {
       const hasClass = RippleDirective.hasClass(el, 'ripple-effect');
+
       if ( hasClass ) {
+        console.log(el);
         this.renderer.removeClass(el, 'ripple-effect');
+      } else {
+        try {
+          this.renderer.setStyle(el, 'z-index', 2);
+          this.renderer.setStyle(el, 'position', 'relative');
+        } catch (e) {}
       }
     });
   }

@@ -13,5 +13,17 @@ export const INITIAL_STATE: AppState = {
       failed: false,
       failedMessage: ''
     }
+  },
+  navigation: {
+    data: [
+      {
+        name: 'home',
+        state: false
+      },
+      {
+        name: 'dashboard',
+        state: false
+      }
+    ]
   }
 };
