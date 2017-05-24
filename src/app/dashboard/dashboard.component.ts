@@ -9,7 +9,27 @@ import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 })
 @AutoUnsubscribe()
 export class DashboardComponent implements OnInit {
-
+  public tileOptions = {
+    header: {
+      text: 'Title',
+      padding: {
+        top: '10px',
+        left: '10px',
+        right: '10px',
+        bottom: '10px'
+      },
+      border: {
+        color: '#ccc'
+      },
+      style: {
+        'font-size': '18px'
+      },
+      icon: 'home'
+    },
+    style: {
+      margin: '20px',
+    }
+  };
   constructor(
     private userService: UserService,
   ) {}

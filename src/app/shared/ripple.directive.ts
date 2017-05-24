@@ -34,14 +34,16 @@
 
  *
  */
-import {Directive, HostListener, ElementRef, Renderer2, Input} from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, Input, OnInit } from '@angular/core';
 import { DomHelper } from './dom.helper.model';
+import { Observable } from 'rxjs/Observable';
 
 @Directive({
   selector: '[appRipple]',
   exportAs: 'appRipple'
 })
-export class RippleDirective extends DomHelper {
+export class RippleDirective extends DomHelper implements OnInit {
+
   @Input('color') public color = '#ffffff';
 
   /**
@@ -53,24 +55,82 @@ export class RippleDirective extends DomHelper {
    */
   @Input('timeout') public timeout = 2500;
 
+  private nativeElement: {width: number, height: number} = {width: 0, height: 0};
+
   constructor(private renderer: Renderer2, private el: ElementRef) {
     super();
+
     renderer.addClass(this.el.nativeElement, 'ripple');
+    renderer.setStyle(this.el.nativeElement, 'overflow', 'hidden');
+    renderer.setStyle(this.el.nativeElement, 'position', 'relative');
   }
 
+  ngOnInit() {
+    /**
+     * Create Observable from event and trigger event
+     * only if window width is changed
+     * .distinctUntilChanged() do this magic, because
+     * .map() return only width
+     * and when window width
+     * is different .distinctUntilChanged() will
+     * trigger new event.
+     */
+    Observable.fromEvent(window, 'resize')
+      .map((e: any) => e.target.innerWidth)
+      .distinctUntilChanged()
+      .debounceTime(200)
+      .subscribe(this._updateToResponsive.bind(this));
+  }
 
   @HostListener('click', ['$event']) click(e) {
     e.preventDefault();
 
+    this._preventGrow();
+
     this._removeOldClasess();
 
     const $div = this.renderer.createElement('div');
+
     const btnOffset = RippleDirective.offset(this.el.nativeElement);
+
     const position = RippleDirective._findPosition(e, btnOffset);
 
     this._applyStyle( $div, position );
 
-    this._removeRipple( $div );
+    this._removeRippleClasses( $div );
+  }
+
+  private _updateToResponsive(): void {
+
+    this._removeStyle();
+
+    this.nativeElement.width = this.el.nativeElement.offsetWidth;
+    this.nativeElement.height = this.el.nativeElement.offsetHeight;
+
+    this._renderStyle();
+  }
+
+  private _removeStyle(): void {
+    this.renderer.removeStyle(this.el.nativeElement, 'width');
+    this.renderer.removeStyle(this.el.nativeElement, 'height');
+  }
+
+  private _renderStyle(): void {
+    this.renderer.setStyle(this.el.nativeElement, 'width', `${this.nativeElement.width}px`);
+    this.renderer.setStyle(this.el.nativeElement, 'height', `${this.nativeElement.height}px`);
+  }
+
+  /**
+   * prevent growing native element
+   * when new elements are pushed
+   * @private
+   */
+  private _preventGrow() {
+    if ( this.nativeElement.width === 0 &&  this.nativeElement.height === 0 ) {
+      this.nativeElement.width = this.el.nativeElement.offsetWidth;
+      this.nativeElement.height = this.el.nativeElement.offsetHeight;
+    }
+    this._renderStyle();
   }
 
   /**
@@ -78,7 +138,7 @@ export class RippleDirective extends DomHelper {
    * @param $div
    * @private
    */
-  private _removeRipple( $div ) {
+  private _removeRippleClasses( $div ) {
     /**
      * fix bug
      * remove .ripple-effect before removing the actual Dom element
@@ -88,7 +148,7 @@ export class RippleDirective extends DomHelper {
     }, this.timeout - 20 );
 
     /**
-     * remove the actual Dom element
+     * and after 20 milliseconds remove the actual Dom element
      */
     setTimeout(() => {
       this.renderer.removeChild(this.el.nativeElement, $div);
@@ -98,11 +158,10 @@ export class RippleDirective extends DomHelper {
 
   private _applyStyle( el, position ) {
     this.renderer.addClass( el, 'ripple-effect' );
-    // this.renderer.setStyle( el, 'height', 1 );
-    // this.renderer.setStyle( el, 'width', 1 );
     this.renderer.setStyle( el, 'top', `${ position.y }px` );
     this.renderer.setStyle( el, 'left', `${ position.x }px` );
     this.renderer.setStyle( el, 'background', this.color );
+    this.renderer.setStyle( el, 'opacity', 0.1 );
     this.renderer.appendChild(this.el.nativeElement, el );
   }
 

@@ -5,6 +5,7 @@
 .ng-theme-wrapper {
   width:100%;
 }
+
 .ng-theme-navigation-image {
   width:40px;
   max-width:40px;
@@ -70,8 +71,8 @@
 .ng-theme-space.ng-theme-bottom-25 { margin-bottom:25px; }
 .ng-theme-space.ng-theme-bottom-30 { margin-bottom:30px; }
 .ng-theme-space.ng-theme-bottom-50 { margin-bottom:50px; }
-md-card {
-  border-radius: 7px!important
+body md-card.ng-theme-card{
+  border-radius: 2px;
 }
 
 
@@ -79,7 +80,7 @@ md-card {
   position:relative;
   color:white;
   height:500px;
-  width:700px;
+  width:100%;
   border: none;
   outline:none;
   margin: 20px auto;
@@ -87,8 +88,8 @@ md-card {
 
 }
 .ripple{
-  overflow:hidden;
-  cursor: pointer;
+  overflow:hidden!important;
+  /*cursor: pointer;*/
 }
 
 .ripple-effect{
@@ -98,13 +99,14 @@ md-card {
   height: 50px;
   background: white;
   animation: ripple-animation 3s;
+  float: left;
 }
 
 
 @keyframes ripple-animation {
   from {
     transform: scale(1);
-    opacity: 0.3;
+    opacity: 0.2;
   }
   to {
     transform: scale(100);

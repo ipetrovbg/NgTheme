@@ -1,4 +1,4 @@
-<md-card class="example-card">
+<md-card class="ng-theme-card">
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
@@ -39,9 +39,11 @@
     </div>
   </div>
   </form>
-  <md-progress-bar
-    *ngIf="isSubmited"
-    [mode]="'indeterminate'"
-  >
-  </md-progress-bar>
+  <md-card-footer>
+    <md-progress-bar
+      *ngIf="isSubmited"
+      [mode]="'indeterminate'"
+    >
+    </md-progress-bar>
+  </md-card-footer>
 </md-card>

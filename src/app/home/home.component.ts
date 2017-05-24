@@ -10,10 +10,13 @@ export class HomeComponent implements OnInit {
     header: {
       text: 'Title custom',
       padding: {
-        top: '120px',
+        top: '10px',
         left: '10px',
         right: '10px',
         bottom: '10px'
+      },
+      border: {
+        color: 'gray'
       },
       style: {
         'font-size': '18px'
@@ -22,7 +25,7 @@ export class HomeComponent implements OnInit {
     },
     style: {
       margin: '20px',
-      width: '40%'
+      width: '300px'
     }
   };
 

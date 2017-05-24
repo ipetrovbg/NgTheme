@@ -1,0 +1,26 @@
+
+  <md-card class="ng-theme-card" [ngStyle]="options?.style" appRipple timeout="800" color="gray">
+    <md-card-header [ngStyle]="{
+    'padding-top': options?.header?.padding?.top,
+      'padding-left': options?.header?.padding?.left,
+      'padding-right': options?.header?.padding?.right,
+      'padding-bottom': options?.header?.padding?.bottom,
+      'border-color': options?.header?.border?.color
+      }">
+
+      <div md-card-avatar class="tile-type">
+        <md-icon>{{ options?.header?.icon }}</md-icon>
+      </div>
+      <md-card-title *ngIf="options?.header" [ngStyle]="options?.header?.style">
+        <span>{{ options?.header?.text }}</span>
+      </md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <ng-content select=".tile-body-template"></ng-content>
+    </md-card-content>
+    <md-card-footer
+      *ngIf="options?.footer"
+      [ngStyle]="options?.footer?.style">
+      <div class="tile-footer">{{ options?.footer?.text }}</div>
+    </md-card-footer>
+  </md-card>

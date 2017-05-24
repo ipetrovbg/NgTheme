@@ -21,14 +21,7 @@ import { LoginGuard } from './login/login.guard';
 
 /* Angular Material Modules */
 import {
-  MdListModule,
-  MdSidenavModule,
-  MdIconModule,
-  MdGridListModule,
-  MdButtonModule,
-  MdCardModule,
-  MdInputModule,
-  MdProgressBarModule,
+
 } from '@angular/material';
 
 /* Application Modules */
@@ -42,8 +35,6 @@ import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CounterActions } from './store/actions';
 import { UserService } from './user/user.service';
-import { TileComponent } from './tile/tile.component';
-import { RippleDirective } from './shared/ripple.directive';
 
 export const firebaseConfig = {
   production: true,
@@ -64,7 +55,6 @@ export const firebaseConfig = {
     NotFoundComponent,
     LoginComponent,
     LoginFormComponent,
-    TileComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,15 +62,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    MdListModule,
-    MdSidenavModule,
-    MdIconModule,
-    MdGridListModule,
-    MdButtonModule,
-    MdInputModule,
-    MdCardModule,
     NgReduxModule,
-    MdProgressBarModule,
     AngularFireModule.initializeApp(firebaseConfig.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
