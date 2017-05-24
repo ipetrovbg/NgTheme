@@ -18,6 +18,7 @@ import {
   MdDatepickerModule,
   MdNativeDateModule,
 } from '@angular/material';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {
     MdCardModule,
     MdDatepickerModule,
     MdNativeDateModule,
+    SharedModule,
     routing,
   ],
   declarations: [

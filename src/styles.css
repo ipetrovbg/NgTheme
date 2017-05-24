@@ -73,3 +73,41 @@
 md-card {
   border-radius: 7px!important
 }
+
+
+.material{
+  position:relative;
+  color:white;
+  height:500px;
+  width:700px;
+  border: none;
+  outline:none;
+  margin: 20px auto;
+  background: #509c81;
+
+}
+.ripple{
+  overflow:hidden;
+  cursor: pointer;
+}
+
+.ripple-effect{
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: white;
+  animation: ripple-animation 3s;
+}
+
+
+@keyframes ripple-animation {
+  from {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  to {
+    transform: scale(100);
+    opacity: 0;
+  }
+}
