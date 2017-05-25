@@ -35,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CounterActions } from './store/actions';
 import { UserService } from './user/user.service';
+import { PcloudService } from './core/pcloud.service';
 
 export const firebaseConfig = {
   production: true,
@@ -76,6 +77,7 @@ export const firebaseConfig = {
     UserService,
     AuthGuard,
     LoginGuard,
+    PcloudService,
   ],
   bootstrap: [AppComponent]
 })

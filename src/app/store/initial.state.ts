@@ -23,6 +23,10 @@ export const INITIAL_STATE: AppState = {
       {
         name: 'dashboard',
         state: false
+      },
+      {
+        name: 'profile',
+        state: false
       }
     ]
   }

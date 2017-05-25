@@ -8,6 +8,7 @@ import { UserSummaryComponent } from 'app/user-summary/user-summary.component';
 
 /* Shared Module */
 import { SharedModule } from 'app/shared/shared.module';
+import { ProfileComponent } from '../profile/profile.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SharedModule } from 'app/shared/shared.module';
     NavigationComponent,
     LayoutComponent,
     UserSummaryComponent,
+    ProfileComponent,
   ]
 })
 export class LayoutModule { }

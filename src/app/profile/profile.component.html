@@ -1,0 +1,28 @@
+
+
+
+<div class="row">
+  <div class="col-md-12 col-lg-6 col-sm-12">
+    <app-tile [options]="tileOptions">
+      <div class="tile-body-template">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-1"><em>User:</em></div>
+          <div class="col-md-8">
+            <span class="text-center"><em>{{ pCloudUser?.email }}</em></span>
+          </div>
+        </div>
+        <div style="display: block;margin-top:50px;">
+          <canvas baseChart width="400" height="300"
+                  [data]="pieChartData"
+                  [options]="pieOptions"
+                  [colors]="pieChartColors"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+    </app-tile>
+  </div>
+</div>

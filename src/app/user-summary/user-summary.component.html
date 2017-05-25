@@ -1,5 +1,4 @@
 <div class="user-summary">
-  <div class="user-email">{{ user.email }}</div>
   <img *ngIf="user.photoURL" [src]="user.photoURL" alt="" class="img-circle img-thumbnail ng-theme-navigation-image">
-  <img *ngIf="!user?.photoURL" src="../../assets/photo.jpg" alt="" class="img-circle img-thumbnail ng-theme-navigation-image">
+  <img *ngIf="!user.photoURL" src="../../assets/photo.jpg" alt="" class="img-circle img-thumbnail ng-theme-navigation-image">
 </div>

@@ -11,7 +11,7 @@
   max-width:40px;
 }
 .user-menu-button {
-  min-width:180px!important;
+  min-width:52px!important;
 }
 .ng-theme-login-title {
   margin-bottom: 5rem;
@@ -176,4 +176,7 @@ md-sidenav.sidebar-panel .mat-list-item .mat-list-item-content {
     transform: scale(100);
     opacity: 0;
   }
+}
+.mat-sidenav-container {
+  height: calc(84vh - -40px)!important;
 }

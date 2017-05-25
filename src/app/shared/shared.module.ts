@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RippleDirective } from './ripple.directive';
 import { TileComponent } from './tile/tile.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 import {
@@ -34,6 +35,7 @@ import {
     MdToolbarModule,
     MdDatepickerModule,
     MdNativeDateModule,
+    ChartsModule,
   ],
   declarations: [
     RippleDirective,
@@ -54,6 +56,9 @@ import {
     MdToolbarModule,
     MdDatepickerModule,
     MdNativeDateModule,
+    ChartsModule,
+  ],
+  providers: [
   ]
 })
 export class SharedModule { }

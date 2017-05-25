@@ -26,7 +26,8 @@
       </md-list-item>
     </md-nav-list>
   </md-list-item>
-  <md-list-item [routerLink]="['/layout/dashboard']"
+
+  <md-list-item
     [ngClass]="{
       open: (navigation$ | async)?.data[1].state,
       'ng-close': !(navigation$ | async)?.data[1].state
@@ -47,6 +48,24 @@
       </md-list-item>
       <md-list-item [routerLink]="['/layout/dashboard']">
         <a class="link" md-line>Dashboard</a>
+      </md-list-item>
+    </md-nav-list>
+  </md-list-item>
+  <md-list-item
+    [ngClass]="{
+      open: (navigation$ | async)?.data[2].state,
+      'ng-close': !(navigation$ | async)?.data[2].state
+    }">
+    <a (click)="toggle('profile')" class="link-toggle">
+      <md-icon md-list-icon>account_circle</md-icon>
+      <span>Profile</span>
+      <md-icon style="position:absolute;right:5px;" md-list-icon>
+        {{ (navigation$ | async)?.data[2].state ? 'expand_less' : 'expand_more' }}
+      </md-icon>
+    </a>
+    <md-nav-list *ngIf="(navigation$ | async)?.data[2].state">
+      <md-list-item [routerLink]="['/layout/profile']">
+        <a class="link" md-line>Profile</a>
       </md-list-item>
     </md-nav-list>
   </md-list-item>
