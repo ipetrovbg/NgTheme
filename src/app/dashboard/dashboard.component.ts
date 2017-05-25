@@ -39,6 +39,33 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
+
+  toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen(); 
+      }
+    }
+  }
+  launchIntoFullscreen(element) {
+    if(element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if(element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if(element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if(element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  }
+
+  fullScreen() {
+    this.launchIntoFullscreen(document.documentElement);
+  }
 
 }
