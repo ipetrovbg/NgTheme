@@ -21,8 +21,13 @@
       <ng-content select=".tile-body-template"></ng-content>
     </md-card-content>
     <md-card-footer
-      *ngIf="options?.footer"
       [ngStyle]="options?.footer?.style">
       <div class="tile-footer">{{ options?.footer?.text }}</div>
+      <md-progress-bar
+        [mode]="'determinate'"
+        value="100"
+      >
+      </md-progress-bar>
+
     </md-card-footer>
   </md-card>

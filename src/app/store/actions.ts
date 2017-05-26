@@ -11,6 +11,7 @@ export class CounterActions {
     static ERROR_ON_LOGIN = 'ERROR_ON_LOGIN';
     static LOGIN_RESET = 'LOGIN_RESET';
     static UPDATE_NAVIGATION = 'UPDATE_NAVIGATION';
+    static FULL_SCREEN = 'FULL_SCREEN';
 
     constructor(private ngRedux: NgRedux<AppState>) {}
 
@@ -26,11 +27,13 @@ export class CounterActions {
     loginReset() {
       this.ngRedux.dispatch({ type: CounterActions.LOGIN_RESET });
     }
-
     errorOnLogin(error) {
       this.ngRedux.dispatch({ type: CounterActions.ERROR_ON_LOGIN, payload: error });
     }
     updateNavigation(item) {
       this.ngRedux.dispatch({ type: CounterActions.UPDATE_NAVIGATION, payload: item });
+    }
+    fullScreenAction() {
+      this.ngRedux.dispatch({ type: CounterActions.FULL_SCREEN });
     }
 }

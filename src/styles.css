@@ -178,5 +178,9 @@ md-sidenav.sidebar-panel .mat-list-item .mat-list-item-content {
   }
 }
 .mat-sidenav-container {
-  height: calc(84vh - -40px)!important;
+  height: calc(90vh)!important;
+}
+.mat-card-actions {
+  padding: 0px 8px!important;
+  margin-bottom: 0!important;
 }

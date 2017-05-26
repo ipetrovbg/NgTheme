@@ -21,6 +21,7 @@ export interface INavigationItem {
 }
 export interface INavigationStore {
   data: Array<INavigationItem>;
+  fullScreen: boolean;
 }
 export interface AppState {
   user: IUserStore;

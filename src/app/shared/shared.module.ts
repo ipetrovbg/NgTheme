@@ -19,6 +19,7 @@ import {
   MdNativeDateModule,
   MdDatepickerModule,
 } from '@angular/material';
+import { FullscreenDirective } from './fullscreen.directive';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import {
   declarations: [
     RippleDirective,
     TileComponent,
+    FullscreenDirective,
   ],
   exports: [
     RippleDirective,
@@ -57,6 +59,7 @@ import {
     MdDatepickerModule,
     MdNativeDateModule,
     ChartsModule,
+    FullscreenDirective,
   ],
   providers: [
   ]

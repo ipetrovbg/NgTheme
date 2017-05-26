@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
+
   }
 
   toggleFullScreen() {
@@ -48,18 +48,18 @@ export class DashboardComponent implements OnInit {
         document.documentElement.requestFullscreen();
     } else {
       if (document.exitFullscreen) {
-        document.exitFullscreen(); 
+        document.exitFullscreen();
       }
     }
   }
   launchIntoFullscreen(element) {
-    if(element.requestFullscreen) {
+    if (element.requestFullscreen) {
       element.requestFullscreen();
-    } else if(element.mozRequestFullScreen) {
+    } else if (element.mozRequestFullScreen) {
       element.mozRequestFullScreen();
-    } else if(element.webkitRequestFullscreen) {
+    } else if (element.webkitRequestFullscreen) {
       element.webkitRequestFullscreen();
-    } else if(element.msRequestFullscreen) {
+    } else if (element.msRequestFullscreen) {
       element.msRequestFullscreen();
     }
   }

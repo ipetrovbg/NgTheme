@@ -28,6 +28,7 @@ export const INITIAL_STATE: AppState = {
         name: 'profile',
         state: false
       }
-    ]
+    ],
+    fullScreen: false,
   }
 };

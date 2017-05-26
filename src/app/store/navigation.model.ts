@@ -5,4 +5,5 @@ export class NavigationItem {
 
 export class NavigationStore {
   data: Array<NavigationItem>;
+  fullScreen: boolean;
 }

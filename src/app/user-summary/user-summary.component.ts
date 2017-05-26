@@ -9,9 +9,8 @@ import { User } from '../user/user';
 })
 export class UserSummaryComponent implements OnInit {
   @Input('user') public user: User;
+  @Input('size') public readonly size: number = 40; // tslint:disable-line
   constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

@@ -15,6 +15,10 @@ export function navigationResucer(state: NavigationStore = INITIAL_STATE.navigat
       });
       return Object.assign({}, state);
     }
+    case CounterActions.FULL_SCREEN: {
+      state.fullScreen = !state.fullScreen;
+      return Object.assign({}, state);
+    }
     default : return state;
   }
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PcloudService } from '../core/pcloud.service';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../user/user';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +11,7 @@ import { PcloudService } from '../core/pcloud.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @select(['user']) public readonly user$: Observable<User>;
   public pieChartLabels: string[] = ['Quota', 'Used'];
   public pieChartData: number[] = [0, 0];
   public pieOptions: any = {
@@ -35,8 +40,6 @@ export class ProfileComponent implements OnInit {
       icon: 'pie_chart'
     },
     style: {
-       width: '300px',
-      height: '350px'
     }
   };
   public pCloudUser: any;

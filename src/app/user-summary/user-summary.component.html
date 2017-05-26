@@ -1,4 +1,4 @@
-<div class="user-summary">
-  <img *ngIf="user.photoURL" [src]="user.photoURL" alt="" class="img-circle img-thumbnail ng-theme-navigation-image">
-  <img *ngIf="!user.photoURL" src="../../assets/photo.jpg" alt="" class="img-circle img-thumbnail ng-theme-navigation-image">
+<div class="user-summary pull-right">
+  <img *ngIf="user.photoURL" [width]="size" [src]="user.photoURL" alt="" class="img-circle img-thumbnail">
+  <img *ngIf="!user.photoURL" [width]="size" src="../../assets/photo.jpg" alt="" class="img-circle img-thumbnail">
 </div>
