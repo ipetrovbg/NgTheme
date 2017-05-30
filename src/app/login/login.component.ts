@@ -38,11 +38,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     /**
-     * reset user login object in redux store
-     */
-    this.actions.loginReset();
-
-    /**
      * initializing reactive form
      */
     this.initializeLoginForm();
@@ -88,6 +83,20 @@ export class LoginComponent implements OnInit {
       this.actions.errorOnLogin({ message: 'Error!' });
     }
     this.actions.submitLogin(false);
+  }
+
+  googleLogin() {
+    this.actions.submitLogin(true);
+    this.userService.googleLogin();
+  }
+
+  facebookLoginEvent() {
+    this.actions.submitLogin(true);
+    this.userService.facebookLogin();
+  }
+  gitHubLogin() {
+    this.actions.submitLogin(true);
+    this.userService.gitHubLogin();
   }
 
   /**

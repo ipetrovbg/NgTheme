@@ -9,11 +9,12 @@ import { RouterModule } from '@angular/router';
 import { NgReduxModule } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { NgRedux, DevToolsExtension } from '@angular-redux/store';
+import { applyMiddleware } from 'redux';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { rootReducer } from './store/store';
+import { rootReducer, client } from './store/store';
 import { INITIAL_STATE } from './store/initial.state';
 import { AppState } from './store/app.state.interface';
 import { AuthGuard } from './user/user.guard';
@@ -36,7 +37,17 @@ import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CounterActions } from './store/actions';
 import { UserService } from './user/user.service';
 import { PcloudService } from './core/pcloud.service';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
+import { ApolloClient } from 'apollo-client';
+import { ApolloModule } from 'apollo-angular';
+
+export function provideClient(): ApolloClient {
+  return client;
+}
+const enhancers = [
+  applyMiddleware(client.middleware()),
+];
 export const firebaseConfig = {
   production: true,
   firebase: {
@@ -56,6 +67,7 @@ export const firebaseConfig = {
     NotFoundComponent,
     LoginComponent,
     LoginFormComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +81,7 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     NgReduxRouterModule,
     SharedModule,
+    ApolloModule.forRoot(provideClient),
   ],
   providers: [
     CounterActions,
@@ -87,11 +100,14 @@ export class AppModule {
     ngRedux: NgRedux<AppState>,
     devTools: DevToolsExtension,
   ) {
+    if (devTools.isEnabled()) {
+      enhancers.push(devTools.enhancer());
+    }
     ngRedux.configureStore(
       rootReducer,
       INITIAL_STATE,
       null,
-      devTools.isEnabled() ? [ devTools.enhancer() ] : []
+      enhancers
     );
     ngReduxRouter.initialize();
   }

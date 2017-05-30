@@ -1,0 +1,74 @@
+<div class="center">
+  <div class="wrapper sign-up">
+    <div class="body">
+      <div class="row">
+        <div class="col-md-12">
+          <md-card class="ng-theme-card">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <div class="ng-theme-login-title">
+                    <h1 class="text-center">Sign Up</h1>
+                    <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+                      <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                        <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5 text-center ng-theme-color-gray">Please fill up your information</h6>
+                      </div>
+                    </div>
+
+                    <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+                      <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                        <p>- or -</p>
+                      </div>
+                    </div>
+                    <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+                      <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                        <a [routerLink]="['/login']">Sign In</a>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+                  <div class="body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <md-input-container class="ng-theme-full-with">
+                          <input mdInput placeholder="Email" formControlName="email" required type="email">
+                        </md-input-container>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <md-input-container class="ng-theme-full-with">
+                          <input mdInput placeholder="Password" formControlName="password" required type="password">
+                        </md-input-container>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <md-input-container class="ng-theme-full-with">
+                          <input mdInput placeholder="Retype password" formControlName="rePassword" required type="password">
+                        </md-input-container>
+                      </div>
+                    </div>
+                  </div>
+                  <md-card-actions>
+                    <button md-raised-button class="ng-theme-full-with" [color]="'primary'">LOGIN</button>
+                  </md-card-actions>
+                </div>
+              </div>
+            </form>
+            <md-card-footer>
+              <md-progress-bar
+                [mode]="'determined'"
+                value="100"
+              >
+              </md-progress-bar>
+            </md-card-footer>
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

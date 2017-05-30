@@ -17,8 +17,8 @@ export class User implements IUser {
             this.user = user;
             this.uid = this.user.uid;
             this.email = this.user.email;
-            this.displayName = this.user.displayName;
-            this.photoURL = this.user.photoURL;
+            this.displayName = this.user.providerData[0].displayName;
+            this.photoURL = this.user.providerData[0].photoURL;
         } else {
           this.user = {};
           this.uid = '';

@@ -1,0 +1,11 @@
+/*.row {*/
+  /*margin-right: 0!important;*/
+  /*margin-left: 0!important;*/
+/*}*/
+.mat-card {
+  padding: 0 0 40px 0;
+}
+.tab-container {
+  width:90%;
+  margin: 0 auto;
+}

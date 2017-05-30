@@ -1,48 +1,122 @@
 <md-card class="ng-theme-card">
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <md-card-content>
-        <div class="ng-theme-login-title">
-          <h1 class="text-center">Login</h1>
-          <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
-            <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
-              <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5 text-center ng-theme-color-gray">Please enter your user information</h6>
-            </div>
-          </div>
 
-          <div class="ng-theme-error-color ng-theme-flex justify-content-center verticle-aligh aligh-item-center" *ngIf="hasError">
-            <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
-              <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5"> {{ message }} </h6>
-            </div>
-          </div>
-        </div>
-        <div class="body">
+  <md-tab-group>
+
+    <md-tab label="Login" class="initial">
+      <div class="tab-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="row">
-            <div class="col-md-12">
-              <md-input-container class="ng-theme-full-with">
-                <input mdInput placeholder="Email" formControlName="email" required type="email">
-              </md-input-container>
-            </div>
-            <div class="col-md-12">
-              <md-input-container class="ng-theme-full-with">
-                <input mdInput placeholder="Password" formControlName="password" required type="password">
-              </md-input-container>
+            <div class="col-md-10 col-md-offset-1">
+                <div class="ng-theme-login-title">
+                  <h1 class="text-center">Sign In</h1>
+                  <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+                    <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                      <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5 text-center ng-theme-color-gray">Please enter your user information</h6>
+                    </div>
+                  </div>
+                  <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+                    <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                      <p>- or -</p>
+                    </div>
+                  </div>
+                  <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+                    <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                      <a [routerLink]="['/sign-up']">Sign-Up</a>
+                    </div>
+                  </div>
+
+                  <div class="ng-theme-error-color ng-theme-flex justify-content-center verticle-aligh aligh-item-center" *ngIf="hasError">
+                    <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                      <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5"> {{ message }} </h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <md-input-container class="ng-theme-full-with">
+                        <input mdInput placeholder="Email" formControlName="email" required type="email">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <md-input-container class="ng-theme-full-with">
+                        <input mdInput placeholder="Password" formControlName="password" required type="password">
+                      </md-input-container>
+                    </div>
+                  </div>
+                </div>
+              <md-card-actions>
+                <button md-raised-button class="ng-theme-full-with" [color]="'primary'">LOGIN</button>
+              </md-card-actions>
             </div>
           </div>
-        </div>
-      </md-card-content>
-      <md-card-actions>
-        <button md-raised-button class="ng-theme-full-with" [color]="'primary'">LOGIN</button>
-      </md-card-actions>
-    </div>
-  </div>
-  </form>
+        </form>
+      </div>
+    </md-tab>
+
+    <md-tab label="Social" class="initial">
+      <div class="tab-container">
+        <!--<form [formGroup]="form">-->
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="ng-theme-login-title">
+                <h1 class="text-center">Social</h1>
+                <div class="ng-theme-flex justify-content-center verticle-aligh aligh-item-center">
+                  <div class="text-center ng-theme-flex verticle-aligh aligh-item-center aligh-content-center">
+                    <md-icon>info_outline</md-icon> <h6 class="ng-theme-space ng-theme-left-5 text-center ng-theme-color-gray">Use Google to Sign In</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <button md-raised-button class="ng-theme-full-with" [color]="'warn'" (click)="googleLogin()">Google</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button md-raised-button class="ng-theme-full-with" color="primary" (click)="facebookLogin()">Facebook</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button md-raised-button class="ng-theme-full-with" color="black" (click)="gitHubLogin()">Github</button>
+                  </div>
+                </div>
+              </div>
+              <!--<md-card-actions>-->
+                <!--<button md-raised-button class="ng-theme-full-with" [color]="'primary'">LOGIN</button>-->
+              <!--</md-card-actions>-->
+            </div>
+          </div>
+        <!--</form>-->
+      </div>
+    </md-tab>
+
+  </md-tab-group>
+
+
+
   <md-card-footer>
+    <md-progress-bar
+      *ngIf="!hasError && !isSubmited"
+      [mode]="'determined'"
+      value="100"
+    >
+    </md-progress-bar>
     <md-progress-bar
       *ngIf="isSubmited"
       [mode]="'indeterminate'"
+    >
+    </md-progress-bar>
+    <md-progress-bar
+      *ngIf="hasError && !isSubmited"
+      [mode]="'determined'"
+      value="100"
+      color="warn"
     >
     </md-progress-bar>
   </md-card-footer>

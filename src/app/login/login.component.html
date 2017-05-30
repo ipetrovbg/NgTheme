@@ -8,8 +8,12 @@
             [has-error]="loginFailed$ | async"
             [is-submited]="submitLogin$ | async"
             (onValidSubmit)="onValidSubmit($event)"
+            (errorSubmit)="onSubmitError($event)"
+            (googleLogin)="googleLogin()"
+            (facebookLogin)="facebookLoginEvent()"
+            (gitHubLogin)="gitHubLogin()"
             [form]="loginForm"
-            (errorSubmit)="onSubmitError($event)"></app-login-form>
+            ></app-login-form>
         </div>
       </div>
     </div>

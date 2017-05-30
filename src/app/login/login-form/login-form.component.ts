@@ -13,6 +13,9 @@ export class LoginFormComponent implements OnInit {
   @Input('message') public message: boolean;
   @Output('onValidSubmit') public onValidSubmit = new EventEmitter();
   @Output('errorSubmit') public errorSubmit = new EventEmitter();
+  @Output('googleLogin') public googleLoginEvent = new EventEmitter();
+  @Output('facebookLogin') public facebookLoginEvent = new EventEmitter();
+  @Output('gitHubLogin') public gitHubLoginEvent = new EventEmitter();
   constructor() { }
 
   ngOnInit() {}
@@ -24,5 +27,14 @@ export class LoginFormComponent implements OnInit {
       this.errorSubmit.emit(this.form.controls);
     }
   }
+  googleLogin() {
+    this.googleLoginEvent.emit();
+  }
 
+  facebookLogin() {
+    this.facebookLoginEvent.emit();
+  }
+  gitHubLogin() {
+    this.gitHubLoginEvent.emit();
+  }
 }

@@ -1,7 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user/user.service';
 import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
-
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+const query = gql`
+  query {
+    users {
+      name
+      email
+      news {
+        title
+      }
+    }
+  }
+`;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -37,10 +49,15 @@ export class DashboardComponent implements OnInit {
   };
   constructor(
     private userService: UserService,
+    private apollo: Apollo,
   ) {}
 
   ngOnInit() {
-
+    this.apollo.watchQuery({
+      query
+    }).subscribe(data => {
+      console.log(data);
+    });
   }
 
   toggleFullScreen() {

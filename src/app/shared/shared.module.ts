@@ -18,6 +18,7 @@ import {
   MdToolbarModule,
   MdNativeDateModule,
   MdDatepickerModule,
+  MdTabsModule,
 } from '@angular/material';
 import { FullscreenDirective } from './fullscreen.directive';
 
@@ -37,6 +38,7 @@ import { FullscreenDirective } from './fullscreen.directive';
     MdDatepickerModule,
     MdNativeDateModule,
     ChartsModule,
+    MdTabsModule,
   ],
   declarations: [
     RippleDirective,
@@ -60,6 +62,7 @@ import { FullscreenDirective } from './fullscreen.directive';
     MdNativeDateModule,
     ChartsModule,
     FullscreenDirective,
+    MdTabsModule,
   ],
   providers: [
   ]
