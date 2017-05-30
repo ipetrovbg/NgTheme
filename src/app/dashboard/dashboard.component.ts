@@ -3,17 +3,8 @@ import { UserService } from '../user/user.service';
 import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-const query = gql`
-  query {
-    users {
-      name
-      email
-      news {
-        title
-      }
-    }
-  }
-`;
+import { LaravelUserServiceService } from '../laravel-user-service.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -50,39 +41,40 @@ export class DashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
     private apollo: Apollo,
+    private laravelUser: LaravelUserServiceService
   ) {}
 
   ngOnInit() {
-    this.apollo.watchQuery({
-      query
-    }).subscribe(data => {
+    const token = JSON.parse(localStorage.getItem('passport'));
+    this.getUsers(token);
+    // this.laravelUser.getAccessToken()
+    //   .subscribe(data => {
+    //     console.log(data);
+    //     localStorage.setItem('passport', JSON.stringify(data));
+    //
+    //   });
+
+    const query = gql`
+      query {
+        users {
+        name
+          me {
+            name
+          }
+        }
+      }
+    `;
+
+    this.apollo.watchQuery({ query }).subscribe(data => {
       console.log(data);
     });
   }
 
-  toggleFullScreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
-    }
-  }
-  launchIntoFullscreen(element) {
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
-    }
-  }
-
-  fullScreen() {
-    this.launchIntoFullscreen(document.documentElement);
+  getUsers(accessToken: any) {
+    this.laravelUser.getUsers(accessToken.access_token)
+      .subscribe(users => {
+          console.log(users);
+        });
   }
 
 }

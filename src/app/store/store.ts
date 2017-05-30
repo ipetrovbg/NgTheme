@@ -11,11 +11,25 @@ export interface ExtendedAction extends Action {
     type: any;
     payload: any;
 }
-export const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
+
+const networkInterface = createNetworkInterface({
     uri: 'http://localhost:8000/graphql'
-  }),
-});
+  });
+//
+networkInterface.use([{
+  applyMiddleware(req, next) {
+    if (!req.options.headers) {
+      req.options.headers = {};  // Create the header object if needed.
+    }
+    // get the authentication token from local storage if it exists
+    const token = JSON.parse(localStorage.getItem('passport'));
+    req.options.headers.Authorization =  `${token.token_type} ${token.access_token}`;
+    next();
+  }
+}]);
+export const client = new ApolloClient({networkInterface});
+
+
 
 export const rootReducer = composeReducers(
   defaultFormReducer(),
