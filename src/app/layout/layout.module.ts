@@ -25,7 +25,7 @@ import { LaravelUserServiceService } from '../laravel-user-service.service';
     ProfileComponent,
   ],
   providers: [
-    LaravelUserServiceService
+
   ]
 })
 export class LayoutModule { }

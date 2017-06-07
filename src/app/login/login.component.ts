@@ -7,6 +7,7 @@ import { UserService } from '../user/user.service';
 import { User } from '../user/user';
 import { Router } from '@angular/router';
 import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
+import { LaravelUserServiceService } from '../laravel-user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,6 @@ export class LoginComponent implements OnInit {
    * @Redux subscriptions for store properties
    */
   @select(['user', 'login', 'submit']) public readonly submitLogin$: Observable<boolean>;
-  @select(['user']) public readonly user$: Observable<User>;
   @select(['user', 'login', 'failed']) public readonly loginFailed$: Observable<boolean>;
   @select(['user', 'login', 'failedMessage']) public readonly loginFailedMessage$: Observable<string>;
 
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private actions: CounterActions,
     public userService: UserService,
+    private laravelService: LaravelUserServiceService,
     private router: Router,
   ) {}
 
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
      * subscribe when user is logged in
      * and navigate to dashboard route
      */
-    this.user$.subscribe(this._handleUser.bind(this));
+    // this.user$.subscribe(this._handleUser.bind(this));
   }
 
   /**
@@ -61,7 +62,14 @@ export class LoginComponent implements OnInit {
    */
   onValidSubmit() {
     this.actions.submitLogin(true);
-    this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
+    this.laravelService.getAccessToken(this.loginForm.value.email, this.loginForm.value.password)
+      .subscribe(token => {
+        this.laravelService.getUsers(token.access_token).subscribe(user => {
+          if ( user ) {
+            this.router.navigate(['/layout/dashboard']);
+          }
+        });
+      });
   }
 
   /**

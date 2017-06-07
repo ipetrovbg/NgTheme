@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../user/user';
 import { CounterActions } from '../store/actions';
 import { Router } from '@angular/router';
+import { LaravelUserServiceService } from '../laravel-user-service.service';
 
 @Component({
   selector: 'app-layout',
@@ -18,6 +19,7 @@ export class LayoutComponent implements OnInit {
     public userService: UserService,
     private actions: CounterActions,
     private router: Router,
+    private laravelService: LaravelUserServiceService,
   ) { }
 
   ngOnInit() {}
@@ -35,7 +37,11 @@ export class LayoutComponent implements OnInit {
     }, 200);
   }
   logout() {
-    this.userService.logout();
+    let token = JSON.parse(localStorage.getItem('passport'));
+    token = token ? token : {access_token: ''};
+    this.laravelService.logout(token.access_token).subscribe(res => {
+      this.router.navigate(['/login']);
+    });
   }
 
 }

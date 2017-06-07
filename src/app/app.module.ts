@@ -18,6 +18,7 @@ import { rootReducer, client } from './store/store';
 import { INITIAL_STATE } from './store/initial.state';
 import { AppState } from './store/app.state.interface';
 import { AuthGuard } from './user/user.guard';
+import { LaravelAuthGuard } from './user/laravel/auth.guard';
 import { LoginGuard } from './login/login.guard';
 
 /* Angular Material Modules */
@@ -41,6 +42,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 import { ApolloClient } from 'apollo-client';
 import { ApolloModule } from 'apollo-angular';
+import { LaravelUserServiceService } from './laravel-user-service.service';
 
 export function provideClient(): ApolloClient {
   return client;
@@ -89,8 +91,10 @@ export const firebaseConfig = {
     AngularFireDatabase,
     UserService,
     AuthGuard,
+    LaravelAuthGuard,
     LoginGuard,
     PcloudService,
+    LaravelUserServiceService,
   ],
   bootstrap: [AppComponent]
 })

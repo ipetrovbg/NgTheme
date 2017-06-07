@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit {
     //   color: 'white'
     }
   };
+
   constructor(
     private userService: UserService,
     private apollo: Apollo,
@@ -45,35 +46,35 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const token = JSON.parse(localStorage.getItem('passport'));
+    let token = JSON.parse(localStorage.getItem('passport'));
+    token = token ? token : {access_token: ''};
     this.getUsers(token);
     // this.laravelUser.getAccessToken()
     //   .subscribe(data => {
-    //     console.log(data);
     //     localStorage.setItem('passport', JSON.stringify(data));
     //
     //   });
-
-    const query = gql`
-      query {
-        users {
-        name
-          me {
-            name
-          }
-        }
-      }
-    `;
-
-    this.apollo.watchQuery({ query }).subscribe(data => {
-      console.log(data);
-    });
   }
 
   getUsers(accessToken: any) {
     this.laravelUser.getUsers(accessToken.access_token)
       .subscribe(users => {
-          console.log(users);
+        console.log(users.id);
+        const query = gql`
+          query {
+            users(id: ${users.id}) {
+              name
+              id
+            }
+          }
+        `;
+        this.apollo.watchQuery({
+          query,
+          variables: {
+            id: users.id
+          } }).subscribe(data => {
+          console.log(data);
+        });
         });
   }
 

@@ -6,6 +6,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { LayoutComponent } from './layout.component';
 
 import { AuthGuard } from '../user/user.guard';
+import { LaravelAuthGuard } from '../user/laravel/auth.guard';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'profile', component: ProfileComponent },
     ],
-    canActivate: [ AuthGuard ]
+    canActivate: [ LaravelAuthGuard ]
   }
 ];
 
