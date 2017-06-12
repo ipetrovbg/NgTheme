@@ -7,7 +7,7 @@ import { UserService } from '../user/user.service';
 import { User } from '../user/user';
 import { Router } from '@angular/router';
 import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
-import { LaravelUserServiceService } from '../laravel-user-service.service';
+import { LaravelUserServiceService } from '../user/laravel/laravel-user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -64,11 +64,7 @@ export class LoginComponent implements OnInit {
     this.actions.submitLogin(true);
     this.laravelService.getAccessToken(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(token => {
-        this.laravelService.getUsers(token.access_token).subscribe(user => {
-          if ( user ) {
-            this.router.navigate(['/layout/dashboard']);
-          }
-        });
+        this.laravelService.getUsers(token.access_token).subscribe(this._handleUser.bind(this));
       });
   }
 
@@ -93,27 +89,13 @@ export class LoginComponent implements OnInit {
     this.actions.submitLogin(false);
   }
 
-  googleLogin() {
-    this.actions.submitLogin(true);
-    this.userService.googleLogin();
-  }
-
-  facebookLoginEvent() {
-    this.actions.submitLogin(true);
-    this.userService.facebookLogin();
-  }
-  gitHubLogin() {
-    this.actions.submitLogin(true);
-    this.userService.gitHubLogin();
-  }
-
   /**
    *
    * @param user
    * @private
    */
   private _handleUser( user: User ) {
-    if ( user && user.uid ) {
+    if ( user && user.id ) {
       this.router.navigate(['/layout/dashboard']);
     }
   }

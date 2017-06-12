@@ -1,8 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { CanActivate, Router } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { LaravelUserServiceService } from 'app/laravel-user-service.service';
+import { LaravelUserServiceService } from 'app/user/laravel/laravel-user-service.service';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()

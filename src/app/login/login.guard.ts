@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { CanActivate } from '@angular/router';
 import { Router } from '@angular/router';
-import { LaravelUserServiceService } from '../laravel-user-service.service';
+import { LaravelUserServiceService } from '../user/laravel/laravel-user-service.service';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()

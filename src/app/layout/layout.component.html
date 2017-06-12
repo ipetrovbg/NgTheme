@@ -19,8 +19,8 @@
         <md-menu #menu="mdMenu">
           <button md-menu-item (click)="toggle('profile')">
             <md-icon>account_circle</md-icon>
-            <span *ngIf="(user$ | async).displayName">{{(user$ | async).displayName }}</span>
-            <span *ngIf="!(user$ | async).displayName">{{(user$ | async).email }}</span>
+            <span *ngIf="(user$ | async).name">{{(user$ | async).name }}</span>
+            <span *ngIf="!(user$ | async).name">{{(user$ | async).email }}</span>
           </button>
           <button md-menu-item (click)="logout()">
             <md-icon>account_circle</md-icon>

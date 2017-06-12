@@ -9,9 +9,6 @@
             [is-submited]="submitLogin$ | async"
             (onValidSubmit)="onValidSubmit($event)"
             (errorSubmit)="onSubmitError($event)"
-            (googleLogin)="googleLogin()"
-            (facebookLogin)="facebookLoginEvent()"
-            (gitHubLogin)="gitHubLogin()"
             [form]="loginForm"
             ></app-login-form>
         </div>

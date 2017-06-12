@@ -3,7 +3,7 @@ import { UserService } from '../user/user.service';
 import { AutoUnsubscribe } from 'app/decorators/autounsubscribe.decorator';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { LaravelUserServiceService } from '../laravel-user-service.service';
+import { LaravelUserServiceService } from '../user/laravel/laravel-user-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -40,7 +40,6 @@ export class DashboardComponent implements OnInit {
   };
 
   constructor(
-    private userService: UserService,
     private apollo: Apollo,
     private laravelUser: LaravelUserServiceService
   ) {}

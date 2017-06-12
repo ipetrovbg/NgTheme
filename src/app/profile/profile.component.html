@@ -3,37 +3,52 @@
 
 <div class="row">
   <div class="col-sm-12 col-md-6 col-lg-8">
-    <md-card class="ng-theme-card">
-      <md-card-content>
-      <div class="row">
-        <div class="col-sm-12 col-md-10">
-          <md-input-container class="ng-theme-full-with">
-            <textarea mdInput class="ng-theme-full-with" placeholder="What's on your mind"></textarea>
+    <!--<md-card class="ng-theme-card">-->
+    <!--<md-card-content>-->
+
+    <!--</md-card-content>-->
+    <!--<md-card-actions>-->
+    <!--<md-input-container>-->
+    <!--<input mdInput [mdDatepicker]="d">-->
+    <!--<button mdSuffix [mdDatepickerToggle]="d"></button>-->
+    <!--</md-input-container>-->
+    <!--<button md-raised-button color="primary" class="pull-right">-->
+    <!--POST-->
+    <!--</button>-->
+    <!--<div class="clearfix"></div>-->
+    <!--</md-card-actions>-->
+    <!--<md-datepicker #d [touchUi]="true"></md-datepicker>-->
+    <!--<md-card-footer>-->
+    <!--<md-progress-bar-->
+    <!--[mode]="'indeterminate'"-->
+    <!--&gt;-->
+    <!--</md-progress-bar>-->
+    <!--</md-card-footer>-->
+    <!--</md-card>-->
+    <app-tile [options]="tileOptions">
+      <div class="tile-body-template">
+        <div class="row">
+          <div class="col-sm-12 col-md-10">
+            <md-input-container class="ng-theme-full-with">
+              <textarea mdInput class="ng-theme-full-with" placeholder="What's on your mind"></textarea>
+            </md-input-container>
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <app-user-summary [size]="60" [user]="user$ | async"></app-user-summary>
+          </div>
+        </div>
+        <md-card-actions>
+          <md-input-container>
+            <input mdInput [mdDatepicker]="d">
+            <button mdSuffix [mdDatepickerToggle]="d"></button>
           </md-input-container>
-        </div>
-        <div class="col-sm-12 col-md-2">
-          <app-user-summary [size]="60" [user]="user$ | async"></app-user-summary>
-        </div>
+          <md-datepicker #d [touchUi]="true"></md-datepicker>
+          <button md-raised-button color="primary" class="pull-right">
+            POST
+          </button>
+        </md-card-actions>
       </div>
-      </md-card-content>
-      <md-card-actions>
-        <md-input-container>
-        <input mdInput [mdDatepicker]="d">
-        <button mdSuffix [mdDatepickerToggle]="d"></button>
-        </md-input-container>
-        <button md-raised-button color="primary" class="pull-right">
-          POST
-        </button>
-        <div class="clearfix"></div>
-      </md-card-actions>
-      <md-datepicker #d [touchUi]="true"></md-datepicker>
-      <md-card-footer>
-        <md-progress-bar
-          [mode]="'indeterminate'"
-        >
-        </md-progress-bar>
-      </md-card-footer>
-    </md-card>
+    </app-tile>
   </div>
   <div class="col-md-6 col-lg-4 col-sm-12">
     <app-tile [options]="tileOptions">

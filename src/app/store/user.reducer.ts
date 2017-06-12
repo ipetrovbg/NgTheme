@@ -10,9 +10,8 @@ export function userReducer(state: IUserStore = INITIAL_STATE.user, action: Exte
   switch (action.type) {
     case CounterActions.UPDATE_USER:
       state.email       = action.payload.email;
-      state.uid         = action.payload.uid;
-      state.displayName = action.payload.displayName;
-      state.photoURL    = action.payload.photoURL;
+      state.id         = action.payload.id;
+      state.name = action.payload.name;
       return Object.assign({}, state);
     case CounterActions.SUBMIT_LOGIN:
       state.login.submit = action.payload;

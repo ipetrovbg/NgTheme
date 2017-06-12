@@ -9,7 +9,7 @@ import { UserSummaryComponent } from 'app/user-summary/user-summary.component';
 /* Shared Module */
 import { SharedModule } from 'app/shared/shared.module';
 import { ProfileComponent } from '../profile/profile.component';
-import { LaravelUserServiceService } from '../laravel-user-service.service';
+import { LaravelUserServiceService } from '../user/laravel/laravel-user-service.service';
 
 @NgModule({
   imports: [

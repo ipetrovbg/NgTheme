@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../user/user';
 import { CounterActions } from '../store/actions';
 import { Router } from '@angular/router';
-import { LaravelUserServiceService } from '../laravel-user-service.service';
+import { LaravelUserServiceService } from '../user/laravel/laravel-user-service.service';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +16,6 @@ import { LaravelUserServiceService } from '../laravel-user-service.service';
 export class LayoutComponent implements OnInit {
   @select(['user']) public readonly user$: Observable<User>;
   constructor(
-    public userService: UserService,
     private actions: CounterActions,
     private router: Router,
     private laravelService: LaravelUserServiceService,

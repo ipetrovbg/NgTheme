@@ -42,7 +42,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 import { ApolloClient } from 'apollo-client';
 import { ApolloModule } from 'apollo-angular';
-import { LaravelUserServiceService } from './laravel-user-service.service';
+import { LaravelUserServiceService } from './user/laravel/laravel-user-service.service';
 
 export function provideClient(): ApolloClient {
   return client;

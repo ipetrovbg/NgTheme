@@ -1,31 +1,23 @@
 export interface IUser {
-    uid: string;
-    displayName?: string;
-    photoURL: string;
-    email: string;
+    id: number;
+    name?: string;
+    news?: string;
+    email?: string;
 }
 
 export class User implements IUser {
-    public uid: string;
-    public displayName: string;
-    public photoURL: string;
+    public id: number;
     public email: string;
+    public name: string;
+    public news: string;
     protected _user: any;
 
     constructor( user ) {
-        if ( user && user.uid ) {
-            this.user = user;
-            this.uid = this.user.uid;
-            this.email = this.user.email;
-            this.displayName = this.user.providerData[0].displayName;
-            this.photoURL = this.user.providerData[0].photoURL;
-        } else {
-          this.user = {};
-          this.uid = '';
-          this.email = '';
-          this.displayName = '';
-          this.photoURL = '';
-        }
+      this.id = ( user && user.id ) ? user.id : null;
+      this.email = ( user && user.email ) ? user.email : '';
+      this.name = ( user && user.name ) ? user.name : '';
+      this.news = ( user && user.news ) ? user.news : '';
+      this.user = user ? user : {};
     }
 
     public isAuth() {

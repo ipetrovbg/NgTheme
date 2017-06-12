@@ -9,9 +9,8 @@ export interface ILoginStore {
   failedMessage: string;
 }
 export interface IUserStore {
-  uid: string;
-  displayName?: string;
-  photoURL?: string;
+  id: string;
+  name?: string;
   email: string;
   login: ILoginStore;
 }

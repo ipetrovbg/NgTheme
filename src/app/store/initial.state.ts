@@ -2,9 +2,8 @@ import { AppState } from './app.state.interface';
 
 export const INITIAL_STATE: AppState = {
   user: {
-    uid: '',
-    displayName: '',
-    photoURL: '',
+    id: '',
+    name: '',
     email: '',
     login: {
       submit: false,
