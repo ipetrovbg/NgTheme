@@ -43,13 +43,14 @@ export class LaravelUserServiceService {
   getAccessToken(email, password) {
     const headers = new Headers({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
       'Accept': 'application/json'
     });
 
     const postData = {
       grant_type: 'password',
-      client_id: 2,
-      client_secret: 'dIp2X5LGkrCF86RN8mrDXIXXRL2a0Hd1iZamgBSu',
+      client_id: 1,
+      client_secret: 'J5amhereKFEMW4PLUpD4dMnW9G9mDx8BcB41Jugw',
       username: email,
       password: password,
       scope: '*'
