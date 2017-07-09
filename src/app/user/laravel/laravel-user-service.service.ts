@@ -39,7 +39,9 @@ export class LaravelUserServiceService {
   getUser(): Observable<User> {
     return this.user.asObservable();
   }
-
+/**
+*  getting access token
+*/
   getAccessToken(email, password) {
     const headers = new Headers({
       'Content-Type': 'application/json',
