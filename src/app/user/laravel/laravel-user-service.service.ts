@@ -53,7 +53,7 @@ export class LaravelUserServiceService {
       username: email,
       password: password,
       scope: '*'
-    }
+    };
 
     return this.http.post(this.oauthUrl, JSON.stringify(postData), {
       headers: headers
@@ -77,6 +77,10 @@ export class LaravelUserServiceService {
 
     return this.http.get(this.usersUrl, {headers})
       .map((res: Response) => res.json())
+      .map((user: Response) => {
+        this._handleSuccessLogin(user);
+        return user;
+      })
       .catch((error: any) => {
         this.actions.errorOnLogin({message: error});
         return Observable.throw(error.json().error || 'Server error');
@@ -95,7 +99,7 @@ export class LaravelUserServiceService {
 
   private _handleSuccessLogin(user) {
     this.actions.loginReset();
-    this.actions.updateUser(new User(user.user));
+    this.actions.updateUser(new User(user));
   }
 
   // private _handleErrorLogin(err, item) {

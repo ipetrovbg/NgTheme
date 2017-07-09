@@ -21,9 +21,19 @@ export function userReducer(state: IUserStore = INITIAL_STATE.user, action: Exte
       state.login.password = action.payload.password;
       return Object.assign({}, state);
     case CounterActions.ERROR_ON_LOGIN:
+
+      let error = action.payload.message._body ? action.payload.message._body : action.payload.message;
+      try {
+        error = JSON.parse(error);
+      } catch (e) {}
+
+      if (error.error)
+        error.error = error.message ? error.message : error.error;
+
+      error = error.error ? error.error : error;
       state.login.submit = false;
       state.login.failed = true;
-      state.login.failedMessage = action.payload.message;
+      state.login.failedMessage = error;
       return Object.assign({}, state);
     case CounterActions.LOGIN_RESET:
       state.login.failed = false;

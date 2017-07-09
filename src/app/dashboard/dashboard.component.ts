@@ -58,7 +58,6 @@ export class DashboardComponent implements OnInit {
   getUsers(accessToken: any) {
     this.laravelUser.getUsers(accessToken.access_token)
       .subscribe(users => {
-        console.log(users.id);
         const query = gql`
           query {
             users(id: ${users.id}) {
@@ -71,9 +70,7 @@ export class DashboardComponent implements OnInit {
           query,
           variables: {
             id: users.id
-          } }).subscribe(data => {
-          console.log(data);
-        });
+          } }).subscribe(data => {});
         });
   }
 
